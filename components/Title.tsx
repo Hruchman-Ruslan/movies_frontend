@@ -10,5 +10,9 @@ export default function Title({
 	children,
 	...props
 }: TitleProps) {
-	return <Tag {...props}>{children}</Tag>
+	return (
+		<Tag className={'mb-6'} {...props}>
+			{children}
+		</Tag>
+	)
 }
