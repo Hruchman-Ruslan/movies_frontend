@@ -1,6 +1,6 @@
 import Logo from '@/components/Logo'
 import Title from '@/components/Title'
-import NavList from '@/components/navigation/NavList'
+import NavList from '@/components/header/NavList'
 
 import HomeIcon from '@/assets/icons/home.svg'
 import CommunityIcon from '@/assets/icons/community.svg'
@@ -72,7 +72,7 @@ export default function Navigation() {
 		<header className='w-60 h-screen bg-stone-900 pt-5'>
 			<Logo />
 			<aside>
-				<nav className='flex flex-col justify-center items-center relative'>
+				<nav className='flex flex-col items-center relative'>
 					{/* Menu navigation */}
 					<div className='text-start'>
 						<Title level={'h2'}>Menu</Title>

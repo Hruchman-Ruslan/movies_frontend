@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Archivo_Black } from 'next/font/google'
 import './globals.css'
 
-import Navigation from '@/components/navigation/Navigation'
+import Header from '@/components/header/Header'
+import Footer from '@/components/footer/Footer'
 
 const archivo = Archivo_Black({
 	subsets: ['latin'],
@@ -24,9 +25,9 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={`${archivo.variable} font-sans antialiased`}>
 				<div className='flex justify-between items-center h-screen bg-stone-950'>
-					<Navigation />
+					<Header />
 					<main>{children}</main>
-					<footer>Footer</footer>
+					<Footer />
 				</div>
 			</body>
 		</html>
