@@ -1,5 +1,7 @@
 import { ElementType, HtmlHTMLAttributes, ReactNode } from "react";
 
+import { cn } from "@/utils/cn";
+
 export interface TitleProps extends HtmlHTMLAttributes<HTMLHeadElement> {
   level: ElementType;
   children: ReactNode;
@@ -11,7 +13,7 @@ export default function Title({
   ...props
 }: TitleProps) {
   return (
-    <Tag className={"mb-6"} {...props}>
+    <Tag className={cn("mb-6")} {...props}>
       {children}
     </Tag>
   );

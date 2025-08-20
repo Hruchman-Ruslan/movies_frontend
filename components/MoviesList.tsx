@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
+import { cn } from "@/utils/cn";
+
 import Rating from "@/components/Rating";
 
 interface Movie {
@@ -16,23 +18,24 @@ interface MoviesListProps {
 
 export default function MoviesList({ moviesData }: MoviesListProps) {
   return (
-    <ul className="mb-4 flex flex-col items-start gap-y-4">
+    <ul className={cn("mb-4 flex flex-col items-start gap-y-4")}>
       {moviesData.map(({ title, genre, rating, src }) => (
         <li key={title}>
-          <div className="flex justify-baseline gap-x-4">
+          <div className={cn("flex items-start gap-x-4")}>
+            <Link href="#" className={cn("flex-shrink-0")}>
+              <Image
+                src={src || "/default.webp"}
+                alt={title || "default image"}
+                width={64}
+                height={90}
+                className={cn("rounded")}
+              />
+            </Link>
             <div>
-              <Link href="#">
-                <Image
-                  src={src || "/default.webp"}
-                  alt="default image"
-                  width={64}
-                  height={90}
-                />
-              </Link>
-            </div>
-            <div>
-              <p className="mb-0.5 text-base font-semibold">{title}</p>
-              <p className="mb-2 text-base font-semibold">{genre}</p>
+              <p className={cn("mb-0.5 text-base font-semibold text-white")}>
+                {title}
+              </p>
+              <p className={cn("mb-2 text-sm text-stone-300")}>{genre}</p>
               <Rating value={rating} />
             </div>
           </div>

@@ -11,6 +11,8 @@ import money from "@/public/money.png";
 import navalny from "@/public/navalny.png";
 import enternals from "@/public/enternals.png";
 
+import { cn } from "@/utils/cn";
+
 const popularMoviesData = [
   {
     src: king_man,
@@ -40,26 +42,33 @@ const watchListData = [
 
 export default function Footer() {
   return (
-    <footer className="flex h-screen w-full flex-col gap-4 bg-stone-900 pt-5">
-      <div className="px-4">
+    <footer
+      className={cn(
+        "flex w-full flex-col gap-4 px-2.5 pt-5",
+        "h-screen bg-stone-900 text-white",
+      )}
+    >
+      <div className={cn("px-4")}>
         <Form />
-        <div className="mb-6 flex items-center justify-between">
-          <Title level={"h2"} className="mb-0">
+
+        <div className={cn("mb-6 flex items-center justify-between")}>
+          <Title level="h2" className="mb-0">
             Popular Movies
           </Title>
           <Options className="cursor-pointer" />
         </div>
-        <div className="max-h-60 w-full overflow-y-auto">
+        <div className={cn("max-h-60 w-full overflow-y-auto")}>
           <MoviesList moviesData={popularMoviesData} />
         </div>
         <Button>See More</Button>
-        <div className="mb-6 flex items-center justify-between">
-          <Title level={"h3"} className="mb-0">
+
+        <div className={cn("mb-6 flex items-center justify-between")}>
+          <Title level="h3" className="mb-0">
             Watch Lists
           </Title>
           <Options className="cursor-pointer" />
         </div>
-        <div className="max-h-80 w-full overflow-y-auto">
+        <div className={cn("max-h-80 w-full overflow-y-auto")}>
           <MoviesList moviesData={watchListData} />
         </div>
         <Button>See More</Button>

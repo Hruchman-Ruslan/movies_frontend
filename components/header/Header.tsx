@@ -1,3 +1,5 @@
+import { cn } from "@/utils/cn";
+
 import Logo from "@/components/Logo";
 import Title from "@/components/Title";
 import NavList from "@/components/header/NavList";
@@ -69,27 +71,38 @@ const generalData = [
 
 export default function Navigation() {
   return (
-    <header className="h-screen w-full bg-stone-900 pt-5">
+    <header
+      className={cn(
+        "relative h-screen w-full bg-stone-900 px-2.5 pt-5 text-white",
+      )}
+    >
       <Logo />
+
       <aside>
-        <nav className="relative flex flex-col items-center">
+        <nav className={cn("flex flex-col px-4")}>
           {/* Menu navigation */}
-          <div className="text-start">
-            <Title level={"h2"}>Menu</Title>
+          <section className="mb-3">
+            <Title level="h2">Menu</Title>
             <NavList data={menuData} />
+          </section>
 
-            {/* Library navigation */}
-            <Title level={"h3"}>Library</Title>
+          {/* Library navigation */}
+          <section className="mb-3">
+            <Title level="h3">Library</Title>
             <NavList data={libraryData} />
+          </section>
 
-            {/* Category navigation */}
-            <Title level={"h2"}>Category</Title>
+          {/* Category navigation */}
+          <section className="mb-3">
+            <Title level="h2">Category</Title>
             <NavList data={categoryData} />
+          </section>
 
-            {/* General navigation */}
-            <Title level={"h3"}>General</Title>
+          {/* General navigation */}
+          <section className="mb-3">
+            <Title level="h3">General</Title>
             <NavList data={generalData} />
-          </div>
+          </section>
         </nav>
       </aside>
     </header>
