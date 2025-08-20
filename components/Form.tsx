@@ -2,6 +2,8 @@
 
 import { searchMovies } from "@/actions/action-search";
 
+import { cn } from "@/utils/cn";
+
 import Search from "@/assets/icons/search.svg";
 
 export default function Form() {
@@ -11,7 +13,7 @@ export default function Form() {
   }
 
   return (
-    <form action={handleSubmit} className="relative mb-6 w-full">
+    <form action={handleSubmit} className={cn("relative mb-6 w-full")}>
       <label htmlFor="movie-search" className="sr-only">
         Search movies
       </label>
@@ -21,14 +23,21 @@ export default function Form() {
         name="query"
         type="text"
         placeholder="Search movies..."
-        className="h-12 w-full rounded-[20px] bg-stone-100 px-12 text-base font-medium text-black"
+        className={cn(
+          "h-12 w-full rounded-[20px] px-12 text-base font-medium",
+          "bg-stone-100 text-black placeholder:text-stone-500",
+          "transition-colors duration-200 focus:ring-2 focus:ring-red-300 focus:outline-none",
+        )}
       />
 
       <button
         type="submit"
-        className="absolute top-1/2 left-3 -translate-y-1/2 cursor-pointer"
+        className={cn(
+          "absolute top-1/2 left-3 -translate-y-1/2 cursor-pointer",
+          "text-stone-500 transition-colors duration-200 hover:text-red-600",
+        )}
       >
-        <Search className="text-stone-500" />
+        <Search />
       </button>
     </form>
   );

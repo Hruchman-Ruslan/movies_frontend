@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import { cn } from "@/utils/cn";
 
 const archivo = Archivo_Black({
   subsets: ["latin"],
@@ -23,10 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${archivo.variable} font-sans antialiased`}>
-        <div className="grid h-screen w-full grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)] bg-stone-950">
+      <body className={cn(archivo.variable)}>
+        <div
+          className={cn(
+            "grid h-screen",
+            "grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",
+          )}
+        >
           <Header />
-          <main className="w-full overflow-y-auto">{children}</main>
+          <main className={cn("w-full overflow-y-auto px-5")}>{children}</main>
           <Footer />
         </div>
       </body>
