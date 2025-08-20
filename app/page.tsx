@@ -1,5 +1,9 @@
-import Title from '@/components/Title'
+import MainHeader from "@/components/main/MainHeader";
 
 export default function Home() {
-	return <Title level={'h1'}>Main Page</Title>
+  return (
+    <div className="flex h-screen w-full items-start justify-start">
+      <MainHeader />
+    </div>
+  );
 }
