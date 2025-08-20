@@ -1,17 +1,17 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Logo() {
-	return (
-		<div className='flex justify-center gap-2.5 text-xl mb-8'>
-			<Image
-				src='/logo@1x.png'
-				alt='logo'
-				width={24}
-				height={24}
-				sizes='24px'
-				priority
-			/>
-			<h1 className='#FFF'>Peacock</h1>
-		</div>
-	)
+  return (
+    <div className="mb-8 flex justify-center gap-2.5 text-xl">
+      <Image
+        src="/default.webp"
+        alt="logo"
+        width={24}
+        height={24}
+        sizes="24px"
+        priority
+      />
+      <h1 className="#FFF">My Demo Project</h1>
+    </div>
+  );
 }
