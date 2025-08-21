@@ -73,7 +73,7 @@ export default function Navigation() {
   return (
     <header
       className={cn(
-        "relative h-screen w-full bg-stone-900 px-2.5 pt-5 text-white",
+        "px- 2.5 relative h-screen w-full bg-stone-900 pt-3.5 text-white",
       )}
     >
       <Logo />

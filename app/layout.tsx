@@ -27,12 +27,13 @@ export default function RootLayout({
       <body className={cn(archivo.variable)}>
         <div
           className={cn(
-            "grid h-screen",
-            "grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",
+            "grid h-screen grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",
           )}
         >
           <Header />
-          <main className={cn("w-full overflow-y-auto px-5")}>{children}</main>
+          <main className={cn("min-h-0 w-full overflow-y-auto px-14")}>
+            {children}
+          </main>
           <Footer />
         </div>
       </body>
