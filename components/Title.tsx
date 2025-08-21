@@ -13,7 +13,7 @@ export default function Title({
   ...props
 }: TitleProps) {
   return (
-    <Tag className={cn("mb-6")} {...props}>
+    <Tag className={cn("mb-6 font-title text-primary-text")} {...props}>
       {children}
     </Tag>
   );

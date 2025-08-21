@@ -71,15 +71,11 @@ const generalData = [
 
 export default function Navigation() {
   return (
-    <header
-      className={cn(
-        "px- 2.5 relative h-screen w-full bg-stone-900 pt-3.5 text-white",
-      )}
-    >
+    <header className={cn("relative h-screen w-full bg-secondary-bg p-5")}>
       <Logo />
 
       <aside>
-        <nav className={cn("flex flex-col px-4")}>
+        <nav className={cn("flex flex-col")}>
           {/* Menu navigation */}
           <section className="mb-3">
             <Title level="h2">Menu</Title>

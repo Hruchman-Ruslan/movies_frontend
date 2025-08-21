@@ -21,9 +21,7 @@ export default function Button({
       type={type}
       {...props}
       className={cn(
-        "mb-6 h-13 w-full cursor-pointer rounded bg-red-100 text-base font-bold text-black",
-        "flex items-center justify-center transition-colors duration-200",
-        "hover:bg-red-200 focus:ring-2 focus:ring-red-300",
+        "mb-6 h-13 w-full rounded text-sm font-semibold",
         bgColor,
         textColor,
       )}

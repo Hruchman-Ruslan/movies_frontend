@@ -5,8 +5,6 @@ import NowPlayingList from "@/components/main/NowPlayingList";
 import TopRating from "@/components/main/TopRating";
 import TopRatingList from "@/components/main/TopRatingList";
 
-import { cn } from "@/utils/cn";
-
 import delth from "/public/delth.png";
 import demon from "/public/demon.png";
 import avatar from "/public/avatar.png";
@@ -33,13 +31,13 @@ const topRatingData = [
 
 export default function Home() {
   return (
-    <div className={cn("flex w-full flex-col items-start justify-start")}>
+    <>
       <MainHeader />
       <Hero />
       <NowPlaying />
       <NowPlayingList nowPlayingData={nowPlayingData} />
       <TopRating />
       <TopRatingList topRatingData={topRatingData} />
-    </div>
+    </>
   );
 }

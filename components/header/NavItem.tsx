@@ -1,7 +1,9 @@
 "use client";
 
 import { ReactNode } from "react";
+
 import { usePathname } from "next/navigation";
+
 import Link, { LinkProps } from "next/link";
 
 import { cn } from "@/utils/cn";
@@ -27,7 +29,7 @@ export default function NavItem({
       href={href}
       {...props}
       className={cn(
-        "flex items-center gap-x-5 transition-colors duration-200",
+        "font-secondary flex items-center gap-x-5 transition-colors duration-200",
         isActive
           ? "text-red-600"
           : "text-white hover:text-red-600 focus:text-red-600",
