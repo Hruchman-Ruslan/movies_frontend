@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Archivo_Black } from "next/font/google";
+import { Ancizar_Serif } from "next/font/google";
+
 import "./globals.css";
 
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+
 import { cn } from "@/utils/cn";
 
-const archivo = Archivo_Black({
+const ancizar = Ancizar_Serif({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-archivo",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ancizar",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(archivo.variable)}>
+      <body className={cn(ancizar.variable)}>
         <div
           className={cn(
             "grid h-screen grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",

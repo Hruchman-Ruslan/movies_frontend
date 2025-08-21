@@ -7,7 +7,7 @@ export default function MainHeader() {
 
   return (
     <div>
-      <ul className={cn("flex items-center justify-center gap-4 py-3.5")}>
+      <ul className={cn("center gap-4 py-3.5")}>
         {links.map((text, index) => (
           <li key={index}>
             <Link

@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
+.center {
+  @apply flex items-center justify-center;
+}
+.center-col {
+  @apply flex flex-col items-center justify-center;
+}
+.center-between {
+  @apply flex items-center justify-between;
+}
+
+.font-primary {
+  @apply text-base font-semibold;
+  font-family: var(--font-primary);
+}
+.font-secondary {
+  @apply text-base font-medium;
+  font-family: var(--font-secondary);
+}
+.font-title {
+  @apply text-lg font-bold;
+  font-family: var(--font-title);
+}
+.font-text {
+  @apply text-xs font-semibold;
+  font-family: var(--font-text);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --primary-text: #dcdcdc;
+  --secondary-text: #ffffff;
+  --primary-bg: black;
+  --secondary-bg: #1e1717;
+
+  /* Fonts */
+  --font-primary: "Ancizar Serif", serif;
+  --font-secondary: "Ancizar Serif", serif;
+  --font-title: "Ancizar Serif", serif;
+  --font-text: "Ancizar Serif", serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-archivo);
-  --font-mono: var(--font-geist-mono);
+  --color-primary-text: var(--primary-text);
+  --color-secondary-text: var(--secondary-text);
+  --color-primary-bg: var(--primary-bg);
+  --color-secondary-bg: var(--secondary-bg);
+  --font-title: var(--font-title);
+  --font-text: var(--font-text);
+  --font-secondary: var(--font-secondary);
+  --font-primary: var(--font-primary);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary-bg: #0a0a0a;
+    --primary-text: #ededed;
   }
 }
 
 body {
-  @apply font-sans antialiased;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  @apply antialiased;
+  font-family: var(--font-primary);
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+Link,
+svg,
+button {
+  cursor: pointer;
 }

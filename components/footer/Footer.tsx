@@ -45,28 +45,28 @@ export default function Footer() {
     <footer
       className={cn(
         "flex w-full flex-col gap-4 pt-3.5",
-        "h-screen bg-stone-900 text-white",
+        "h-screen bg-secondary-bg",
       )}
     >
       <div className={cn("px-4")}>
         <Form />
 
-        <div className={cn("mb-5 flex items-center justify-between")}>
-          <Title level="h2" className="mb-0">
+        <div className={cn("center-between mb-5")}>
+          <Title level="h2" className="mb-0 font-title text-primary-text">
             Popular Movies
           </Title>
-          <Options className="cursor-pointer" />
+          <Options />
         </div>
         <div className={cn("max-h-60 w-full")}>
           <MoviesList moviesData={popularMoviesData} />
         </div>
         <Button>See More</Button>
 
-        <div className={cn("mb-5 flex items-center justify-between")}>
+        <div className={cn("center-between mb-5")}>
           <Title level="h3" className="mb-0">
             Watch Lists
           </Title>
-          <Options className="cursor-pointer" />
+          <Options />
         </div>
         <div className={cn("max-80 w-full")}>
           <MoviesList moviesData={watchListData} />

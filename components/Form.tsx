@@ -24,16 +24,16 @@ export default function Form() {
         type="text"
         placeholder="Search movies..."
         className={cn(
-          "h-12 w-full rounded-[20px] px-12 text-base font-medium",
-          "bg-stone-100 text-black placeholder:text-stone-500",
-          "transition-colors duration-200 focus:ring-2 focus:ring-red-300 focus:outline-none",
+          "h-12 w-full rounded-[20px] px-12",
+          "bg-stone-100 placeholder:text-stone-500",
+          "text-black transition-colors duration-200 focus:ring-2 focus:ring-red-300 focus:outline-none",
         )}
       />
 
       <button
         type="submit"
         className={cn(
-          "absolute top-1/2 left-3 -translate-y-1/2 cursor-pointer",
+          "absolute top-1/2 left-3 -translate-y-1/2",
           "text-stone-500 transition-colors duration-200 hover:text-red-600",
         )}
       >
