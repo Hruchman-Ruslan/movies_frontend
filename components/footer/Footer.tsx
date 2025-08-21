@@ -29,12 +29,12 @@ const popularMoviesData = [
 ];
 
 const watchListData = [
-  // {
-  // 	src: king_man,
-  // 	title: 'The Kings Man',
-  // 	genre: 'Adventure, Crime',
-  // 	rating: 4,
-  // },
+  {
+    src: king_man,
+    title: "The Kings Man",
+    genre: "Adventure, Crime",
+    rating: 4,
+  },
   { src: money, title: "Money Heist", genre: "Action, Sci-Fi", rating: 5 },
   { src: navalny, title: "Navalny", genre: "Adventure, Drama", rating: 4 },
   { src: enternals, title: "Enternals", genre: "Crime, War", rating: 3 },
@@ -44,31 +44,31 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        "flex w-full flex-col gap-4 px-2.5 pt-5",
+        "flex w-full flex-col gap-4 pt-3.5",
         "h-screen bg-stone-900 text-white",
       )}
     >
       <div className={cn("px-4")}>
         <Form />
 
-        <div className={cn("mb-6 flex items-center justify-between")}>
+        <div className={cn("mb-5 flex items-center justify-between")}>
           <Title level="h2" className="mb-0">
             Popular Movies
           </Title>
           <Options className="cursor-pointer" />
         </div>
-        <div className={cn("max-h-60 w-full overflow-y-auto")}>
+        <div className={cn("max-h-60 w-full")}>
           <MoviesList moviesData={popularMoviesData} />
         </div>
         <Button>See More</Button>
 
-        <div className={cn("mb-6 flex items-center justify-between")}>
+        <div className={cn("mb-5 flex items-center justify-between")}>
           <Title level="h3" className="mb-0">
             Watch Lists
           </Title>
           <Options className="cursor-pointer" />
         </div>
-        <div className={cn("max-h-80 w-full overflow-y-auto")}>
+        <div className={cn("max-80 w-full")}>
           <MoviesList moviesData={watchListData} />
         </div>
         <Button>See More</Button>
