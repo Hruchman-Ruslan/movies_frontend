@@ -69,9 +69,18 @@ const generalData = [
   { title: "Logout", href: "logout", icon: <LogoutIcon /> },
 ];
 
-export default function Navigation() {
+interface HeaderProps {
+  className?: string;
+}
+
+export default function Header({ className }: HeaderProps) {
   return (
-    <header className={cn("relative h-screen w-full bg-secondary-bg p-5")}>
+    <header
+      className={cn(
+        "relative flex h-screen w-full flex-col justify-between bg-secondary-bg p-5",
+        className,
+      )}
+    >
       <Logo />
 
       <aside>

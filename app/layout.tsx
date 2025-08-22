@@ -26,17 +26,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(ancizar.variable)}>
+      <body className={cn(ancizar.variable, "h-screen overflow-hidden")}>
         <div
           className={cn(
             "grid h-screen grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",
           )}
         >
-          <Header />
+          <Header className={cn("min-h-0 w-full overflow-y-auto")} />
           <main className={cn("min-h-0 w-full overflow-y-auto px-14")}>
             {children}
           </main>
-          <Footer />
+          <Footer className={cn("min-h-0 w-full overflow-y-auto")} />
         </div>
       </body>
     </html>

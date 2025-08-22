@@ -66,7 +66,6 @@ body {
   color: var(--primary-text);
 }
 
-Link,
 svg,
 button {
   cursor: pointer;

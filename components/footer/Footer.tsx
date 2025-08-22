@@ -40,12 +40,17 @@ const watchListData = [
   { src: enternals, title: "Enternals", genre: "Crime, War", rating: 3 },
 ];
 
-export default function Footer() {
+interface FooterProps {
+  className?: string;
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn(
-        "flex w-full flex-col gap-4 pt-3.5",
+        "flex w-full flex-col justify-center gap-4 pt-3.5",
         "h-screen bg-secondary-bg",
+        className,
       )}
     >
       <div className={cn("px-4")}>
