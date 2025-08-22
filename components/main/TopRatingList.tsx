@@ -15,17 +15,17 @@ export interface TopRatingProps {
 export default function TopRatingList({ topRatingData }: TopRatingProps) {
   return (
     <ul
-      className={cn("mx-auto grid w-full max-w-6xl gap-4")}
+      className={cn("grid w-full gap-4")}
       style={{
         gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
       }}
     >
       {topRatingData.map((item, index) => (
-        <li key={index}>
+        <li key={index} className={cn("h-40 w-full")}>
           <Link
             href="#"
             className={cn(
-              "flex h-40 w-64 items-end justify-center bg-cover bg-center p-2",
+              "flex h-full items-end justify-center bg-cover bg-center p-2",
             )}
             style={{ backgroundImage: `url(${item.image.src})` }}
           >
