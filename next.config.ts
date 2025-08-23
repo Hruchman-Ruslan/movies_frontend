@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    domains: ["image.tmdb.org"],
+  },
   webpack(config) {
     // Find the existing rule that handles SVG files
     const fileLoaderRule = config.module.rules.find((rule) =>
