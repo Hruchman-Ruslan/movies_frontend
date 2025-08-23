@@ -1,9 +1,13 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Options from "@/assets/icons/options.svg";
 
 import Form from "@/components/Form";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
-import MoviesList from "@/components/MoviesList";
+import MoviesList, { Movie } from "@/components/MoviesList";
 
 import king_man from "@/public/king_man.png";
 import resident from "@/public/resident.png";
@@ -45,6 +49,15 @@ interface FooterProps {
 }
 
 export default function Footer({ className }: FooterProps) {
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3030/movies/popular")
+      .then((res) => res.json())
+      .then((data) => setPopularMovies(data))
+      .catch(console.error);
+  }, []);
+
   return (
     <footer
       className={cn(
@@ -63,7 +76,7 @@ export default function Footer({ className }: FooterProps) {
           <Options />
         </div>
         <div className={cn("max-h-60 w-full")}>
-          <MoviesList moviesData={popularMoviesData} />
+          <MoviesList moviesData={popularMovies} />
         </div>
         <Button>See More</Button>
 
@@ -73,9 +86,9 @@ export default function Footer({ className }: FooterProps) {
           </Title>
           <Options />
         </div>
-        <div className={cn("max-80 w-full")}>
+        {/* <div className={cn("max-80 w-full")}>
           <MoviesList moviesData={watchListData} />
-        </div>
+        </div> */}
         <Button>See More</Button>
       </div>
     </footer>

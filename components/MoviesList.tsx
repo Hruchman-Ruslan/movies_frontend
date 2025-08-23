@@ -1,15 +1,15 @@
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { cn } from "@/utils/cn";
 
 import Rating from "@/components/Rating";
 
-interface Movie {
+export interface Movie {
   title: string;
-  genre: string;
+  genres: string;
   rating: number;
-  src: StaticImageData;
+  poster: string;
 }
 
 interface MoviesListProps {
@@ -19,12 +19,12 @@ interface MoviesListProps {
 export default function MoviesList({ moviesData }: MoviesListProps) {
   return (
     <ul className={cn("mb-4 flex flex-col gap-y-4")}>
-      {moviesData.map(({ title, genre, rating, src }) => (
+      {moviesData.map(({ title, genres, rating, poster }) => (
         <li key={title}>
           <div className={cn("flex items-start gap-x-4")}>
             <Link href="#">
               <Image
-                src={src || "/default.webp"}
+                src={poster || "/default.webp"}
                 alt={title || "default image"}
                 width={64}
                 height={90}
@@ -36,7 +36,7 @@ export default function MoviesList({ moviesData }: MoviesListProps) {
                 {title}
               </p>
               <p className={cn("mb-2 font-primary text-secondary-text")}>
-                {genre}
+                {genres}
               </p>
               <Rating value={rating} />
             </div>
