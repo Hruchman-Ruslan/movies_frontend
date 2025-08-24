@@ -3,10 +3,9 @@ import { Ancizar_Serif } from "next/font/google";
 
 import "./globals.css";
 
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
-
 import { cn } from "@/utils/cn";
+
+import Header from "@/components/header/Header";
 
 const ancizar = Ancizar_Serif({
   subsets: ["latin"],
@@ -21,8 +20,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  popular,
+  watching,
 }: Readonly<{
   children: React.ReactNode;
+  popular: React.ReactNode;
+  watching: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -36,7 +39,16 @@ export default function RootLayout({
           <main className={cn("min-h-0 w-full overflow-y-auto px-14")}>
             {children}
           </main>
-          <Footer className={cn("min-h-0 w-full overflow-y-auto")} />
+
+          <footer
+            className={cn(
+              "flex min-h-0 w-full flex-col gap-4 overflow-y-auto",
+              "bg-secondary-bg",
+            )}
+          >
+            {popular}
+            {watching}
+          </footer>
         </div>
       </body>
     </html>

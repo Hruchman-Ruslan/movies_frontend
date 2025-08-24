@@ -73,11 +73,11 @@ interface HeaderProps {
   className?: string;
 }
 
-export default function Header({ className }: HeaderProps) {
+export default function HeaderComponent({ className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "relative flex h-screen w-full flex-col justify-between bg-secondary-bg p-5",
+        "justify relative flex h-screen w-full flex-col bg-secondary-bg p-5",
         className,
       )}
     >
