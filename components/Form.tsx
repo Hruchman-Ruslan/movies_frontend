@@ -1,6 +1,6 @@
 "use client";
 
-import { searchMovies } from "@/actions/action-search";
+import { searchMovies } from "@/actions/action-movies";
 
 import { cn } from "@/utils/cn";
 

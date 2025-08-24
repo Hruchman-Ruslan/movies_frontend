@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import { cn } from "@/utils/cn";
 
@@ -9,7 +9,7 @@ export interface Movie {
   title: string;
   genres: string;
   rating: number;
-  poster: string;
+  poster: string | StaticImageData;
 }
 
 interface MoviesListProps {

@@ -21,7 +21,7 @@ export default function Button({
       type={type}
       {...props}
       className={cn(
-        "mb-6 h-13 w-full rounded text-sm font-semibold",
+        "h-13 w-full rounded text-sm font-semibold",
         bgColor,
         textColor,
       )}
