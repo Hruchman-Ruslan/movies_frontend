@@ -20,7 +20,7 @@ const watchListData = [
   },
   { poster: money, title: "Money Heist", genres: "Action, Sci-Fi", rating: 5 },
   { poster: navalny, title: "Navalny", genres: "Adventure, Drama", rating: 4 },
-  { poster: enternals, title: "Enternals", genres: "Crime, War", rating: 3 },
+  // { poster: enternals, title: "Enternals", genres: "Crime, War", rating: 3 },
 ];
 
 export default function Watching() {

@@ -6,6 +6,7 @@ import "./globals.css";
 import { cn } from "@/utils/cn";
 
 import Header from "@/components/header/Header";
+import Form from "@/components/Form";
 
 const ancizar = Ancizar_Serif({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
               "bg-secondary-bg",
             )}
           >
+            <Form />
             {popular}
             {watching}
           </footer>
