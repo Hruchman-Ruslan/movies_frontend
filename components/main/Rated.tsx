@@ -1,51 +1,51 @@
-"use client";
+import { useEffect, useState } from "react";
 
-import { useState, useEffect } from "react";
-
-import { getNowPlayingMovies } from "@/actions/action-movies";
+import { getTopRatedMovies } from "@/actions/action-movies";
 
 import { cn } from "@/utils/cn";
 
 import Left from "@/assets/icons/left.svg";
 import Right from "@/assets/icons/right.svg";
 
-import Title from "../Title";
+import Title from "@/components/Title";
 import MoviesList from "@/components/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
-export interface NowPlayingItem {
+export interface TopRatingItem {
   id: number;
   poster: string;
+  title: string;
 }
 
-export interface NowPlayingProps {
-  nowPlayingData: NowPlayingItem[];
+export interface TopRatingProps {
+  topRatingData: TopRatingItem[];
 }
 
-export default function NowPlayingList({ nowPlayingData }: NowPlayingProps) {
+export default function Rated({ topRatingData }: TopRatingProps) {
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [page, setPage] = useState(1);
-  const [moviesList, setMoviesList] =
-    useState<NowPlayingItem[]>(nowPlayingData);
+  const [moviesList, setMoviesList] = useState<TopRatingItem[]>(topRatingData);
 
   useEffect(() => {
     if (page > 1) {
-      getNowPlayingMovies(page).then((newMovies) => {
+      getTopRatedMovies(page).then((newMovies) => {
         setMoviesList((prev) => [...prev, ...newMovies]);
       });
     }
   }, [page]);
 
   const handleNext = () => {
-    const nextIndex = visibleIndex + 5;
+    const nextIndex = visibleIndex + 4;
+
     if (nextIndex >= moviesList.length) {
       setPage((prev) => prev + 1);
     }
+
     setVisibleIndex(nextIndex);
   };
 
   const handlePrev = () => {
-    const prevIndex = visibleIndex - 5;
+    const prevIndex = visibleIndex - 4;
     if (prevIndex >= 0) {
       setVisibleIndex(prevIndex);
     }
@@ -72,8 +72,8 @@ export default function NowPlayingList({ nowPlayingData }: NowPlayingProps) {
       </div>
 
       <MoviesList
-        movies={moviesList.slice(visibleIndex, visibleIndex + 5)}
-        variant="nowPlaying"
+        movies={moviesList.slice(visibleIndex, visibleIndex + 4)}
+        variant="topRated"
         onAdd={() => console.log("fatality adding")}
         onWatch={() => console.log("fatality watching")}
       />

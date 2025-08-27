@@ -1,11 +1,22 @@
-import Link from "next/link";
-import { StaticImageData } from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+
+import { getTopRatedMovies } from "@/actions/action-movies";
 
 import { cn } from "@/utils/cn";
 
+import Left from "@/assets/icons/left.svg";
+import Right from "@/assets/icons/right.svg";
+
+import Title from "@/components/Title";
+import MoviesList from "@/components/MoviesList";
+import ChuckNorrisButton from "@/components/Button";
+
 export interface TopRatingItem {
+  id: number;
+  poster: string;
   title: string;
-  image: StaticImageData;
 }
 
 export interface TopRatingProps {
@@ -13,26 +24,59 @@ export interface TopRatingProps {
 }
 
 export default function TopRatingList({ topRatingData }: TopRatingProps) {
+  const [visibleIndex, setVisibleIndex] = useState(0);
+  const [page, setPage] = useState(1);
+  const [moviesList, setMoviesList] = useState<TopRatingItem[]>(topRatingData);
+
+  useEffect(() => {
+    if (page > 1) {
+      getTopRatedMovies(page).then((newMovies) => {
+        setMoviesList((prev) => [...prev, ...newMovies]);
+      });
+    }
+  }, [page]);
+
+  const handleNext = () => {
+    const nextIndex = visibleIndex + 4;
+    if (nextIndex >= moviesList.length) {
+      setPage((prev) => prev + 1);
+    }
+    setVisibleIndex(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = visibleIndex - 4;
+    if (prevIndex >= 0) {
+      setVisibleIndex(prevIndex);
+    }
+  };
+
   return (
-    <ul
-      className={cn("grid w-full gap-4")}
-      style={{
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-      }}
-    >
-      {topRatingData.map((item, index) => (
-        <li key={index} className={cn("h-40 w-full")}>
-          <Link
-            href="#"
-            className={cn(
-              "flex h-full items-end justify-center bg-cover bg-center p-2",
-            )}
-            style={{ backgroundImage: `url(${item.image.src})` }}
+    <section>
+      <div className={cn("mb-7 flex w-full items-center justify-between")}>
+        <Title level="h2" className={cn("mb-0 font-title text-primary-text")}>
+          Top Rated Movies
+        </Title>
+        <div className={cn("center gap-5")}>
+          <ChuckNorrisButton
+            onClick={handlePrev}
+            disabled={visibleIndex === 0}
+            variant="svg"
           >
-            {item.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+            <Left />
+          </ChuckNorrisButton>
+          <ChuckNorrisButton onClick={handleNext} variant="svg">
+            <Right />
+          </ChuckNorrisButton>
+        </div>
+      </div>
+
+      <MoviesList
+        movies={moviesList.slice(visibleIndex, visibleIndex + 4)}
+        variant="topRated"
+        onAdd={() => console.log("fatality adding")}
+        onWatch={() => console.log("fatality watching")}
+      />
+    </section>
   );
 }

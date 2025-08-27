@@ -1,30 +1,40 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 import { cn } from "@/utils/cn";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  type?: "button" | "submit" | "reset";
-  bgColor?: string;
-  textColor?: string;
+interface ChuckNorrisButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  variant?: "showMore" | "svg" | "watch now" | "add";
 }
 
-export default function Button({
-  type = "button",
-  bgColor = "bg-red-100",
-  textColor = "text-black",
+export default function ChuckNorrisButton({
   children,
+  className,
+  onClick,
+  disabled,
+  variant,
   ...props
-}: ButtonProps) {
+}: ChuckNorrisButtonProps) {
   return (
     <button
-      type={type}
       {...props}
       className={cn(
-        "h-13 w-full rounded text-sm font-semibold",
-        bgColor,
-        textColor,
+        variant === "showMore" &&
+          "h-14 w-full rounded-tr-sm bg-red-100 text-base font-bold text-black",
+        variant === "watch now" &&
+          "h-10 w-full rounded-lg bg-red-600/70 text-sm font-semibold text-white",
+        variant === "svg" &&
+          "flex items-center justify-center rounded-full bg-transparent",
+        variant === "add" &&
+          "h-10 w-11 rounded-lg bg-red-100/90 text-2xl text-black",
+        className,
       )}
+      onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

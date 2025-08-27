@@ -37,14 +37,19 @@ export default function RootLayout({
           )}
         >
           <Header className={cn("min-h-0 w-full overflow-y-auto")} />
-          <main className={cn("min-h-0 w-full overflow-y-auto px-14")}>
+          <main
+            className={cn(
+              "flex w-full flex-col justify-around gap-4 overflow-y-auto",
+              "scrollbar-thin px-14",
+            )}
+          >
             {children}
           </main>
 
           <footer
             className={cn(
-              "flex min-h-0 w-full flex-col gap-4 overflow-y-auto",
-              "bg-secondary-bg",
+              "flex w-full flex-col justify-around gap-4 overflow-y-auto",
+              "bg-secondary-bg px-4",
             )}
           >
             <Form />

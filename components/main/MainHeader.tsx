@@ -6,7 +6,7 @@ export default function MainHeader() {
   const links = ["Developer", "Developer", "Developer"];
 
   return (
-    <div>
+    <section>
       <ul className={cn("center gap-4 py-3.5")}>
         {links.map((text, index) => (
           <li key={index}>
@@ -22,6 +22,6 @@ export default function MainHeader() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

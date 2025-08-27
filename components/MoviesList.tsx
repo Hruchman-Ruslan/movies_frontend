@@ -1,48 +1,56 @@
-import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
-
 import { cn } from "@/utils/cn";
 
-import Rating from "@/components/Rating";
+import { StaticImageData } from "next/image";
+
+import MovieItem from "@/components/MovieItem";
 
 export interface Movie {
-  title: string;
-  genres: string;
-  rating: number;
-  poster: string | StaticImageData;
+  id: number;
+  title?: string;
+  genres?: string;
+  rating?: number;
+  poster?: string | StaticImageData;
 }
 
-interface MoviesListProps {
-  moviesData: Movie[];
+interface MovieListProps {
+  movies: Movie[];
+  variant?: "popular" | "watching" | "nowPlaying" | "topRated";
+  onAdd?: (movie: Movie) => void;
+  onWatch?: (movie: Movie) => void;
+  className?: string;
 }
 
-export default function MoviesList({ moviesData }: MoviesListProps) {
+export default function MoviesList({
+  movies,
+  variant,
+  onAdd,
+  onWatch,
+  className,
+}: MovieListProps) {
   return (
-    <ul className={cn("mb-4 flex flex-col gap-y-4")}>
-      {moviesData.map(({ title, genres, rating, poster }) => (
-        <li key={title}>
-          <div className={cn("flex items-start gap-x-4")}>
-            <Link href="#">
-              <Image
-                src={poster || "/default.webp"}
-                alt={title || "default image"}
-                width={64}
-                height={90}
-                className={cn("rounded")}
-              />
-            </Link>
-            <div>
-              <p className={cn("mb-0.5 font-primary text-secondary-text")}>
-                {title}
-              </p>
-              <p className={cn("mb-2 font-primary text-secondary-text")}>
-                {genres}
-              </p>
-              <Rating value={rating} />
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul
+        className={cn(
+          variant === "popular" &&
+            "mb-4 flex flex-col items-center justify-center gap-y-3.5",
+          variant === "watching" &&
+            "mb-4 flex flex-col items-center justify-center gap-y-3.5",
+          variant === "nowPlaying" && "grid w-full grid-cols-5 gap-3.5",
+          variant === "topRated" && "grid w-full grid-cols-4 gap-3.5",
+          className,
+        )}
+      >
+        {movies.map((movie) => (
+          <li key={movie.id} className={cn("w-full")}>
+            <MovieItem
+              {...movie}
+              variant={variant}
+              onAdd={onAdd}
+              onWatch={onWatch}
+            />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
