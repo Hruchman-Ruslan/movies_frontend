@@ -27,6 +27,13 @@
   font-family: var(--font-text);
 }
 
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-hover) transparent;
+  }
+}
+
 :root {
   /* Colors */
   --primary-text: #dcdcdc;
@@ -39,6 +46,9 @@
   --font-secondary: "Ancizar Serif", serif;
   --font-title: "Ancizar Serif", serif;
   --font-text: "Ancizar Serif", serif;
+
+  /* hover, focus, active */
+  --hover-color: #eb1c24;
 }
 
 @theme inline {
@@ -50,6 +60,7 @@
   --font-text: var(--font-text);
   --font-secondary: var(--font-secondary);
   --font-primary: var(--font-primary);
+  --color-hover: var(--hover-color);
 }
 
 @media (prefers-color-scheme: dark) {

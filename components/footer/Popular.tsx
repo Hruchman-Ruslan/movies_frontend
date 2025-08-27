@@ -1,18 +1,18 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
 import { useState, useEffect } from "react";
 
 import { getPopularMovies } from "@/actions/action-movies";
 
 import { cn } from "@/utils/cn";
 
+import Options from "@/assets/icons/options.svg";
+
 import { Movie } from "@/app/@popular/page";
 
-import Rating from "@/components/Rating";
-import Button from "@/components/Button";
+import Title from "@/components/Title";
+import MoviesList from "@/components/MoviesList";
+import ChuckNorrisButton from "@/components/Button";
 
 interface PopularProps {
   movies: Movie[];
@@ -36,39 +36,21 @@ export default function Popular({ movies }: PopularProps) {
   };
 
   return (
-    <div className={cn("mb-4 flex flex-col gap-4")}>
-      {moviesList
-        .slice(visibleIndex, visibleIndex + 2)
-        .map(({ title, poster, genres, rating }) => (
-          <div key={title} className={cn("flex h-28 items-center gap-2")}>
-            <Link
-              href="#"
-              className={cn(
-                "relative block h-[90px] w-[64px] overflow-hidden rounded",
-              )}
-            >
-              <Image
-                src={poster || "/default.webp"}
-                alt={title || "default image"}
-                fill
-                className="object-cover"
-              />
-            </Link>
-            <div>
-              <p className={cn("mb-0.5 font-primary text-secondary-text")}>
-                {title}
-              </p>
-              <p className={cn("mb-1 font-primary text-secondary-text")}>
-                {genres}
-              </p>
-              <Rating value={rating} />
-            </div>
-          </div>
-        ))}
+    <>
+      <div className={cn("center-between mb-5")}>
+        <Title level="h2" className={cn("font-title text-primary-text")}>
+          Popular Movies
+        </Title>
+        <Options />
+      </div>
+      <MoviesList
+        movies={moviesList.slice(visibleIndex, visibleIndex + 2)}
+        variant="popular"
+      />
 
-      <Button onClick={handleNext} bgColor="bg-red-100" textColor="text-black">
+      <ChuckNorrisButton onClick={handleNext} variant="showMore">
         Show More
-      </Button>
-    </div>
+      </ChuckNorrisButton>
+    </>
   );
 }

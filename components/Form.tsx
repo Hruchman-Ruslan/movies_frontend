@@ -13,10 +13,7 @@ export default function Form() {
   }
 
   return (
-    <form
-      action={handleSubmit}
-      className={cn("relative mb-3 w-full px-4 pt-3.5")}
-    >
+    <form action={handleSubmit} className={cn("relative w-full")}>
       <label htmlFor="movie-search" className="sr-only">
         Search movies
       </label>
