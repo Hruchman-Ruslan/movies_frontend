@@ -4,29 +4,25 @@ import { useState, useEffect } from "react";
 
 import { getNowPlayingMovies } from "@/actions/action-movies";
 
+import { MovieProps } from "@/types/movie";
+
 import { cn } from "@/utils/cn";
 
 import Left from "@/assets/icons/left.svg";
 import Right from "@/assets/icons/right.svg";
 
 import Title from "../Title";
-import MoviesList from "@/components/MoviesList";
+import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
-export interface NowPlayingItem {
-  id: number;
-  poster: string;
+interface NowPlayingProps {
+  movies: MovieProps[];
 }
 
-export interface NowPlayingProps {
-  nowPlayingData: NowPlayingItem[];
-}
-
-export default function NowPlayingList({ nowPlayingData }: NowPlayingProps) {
+export default function NowPlayingList({ movies }: NowPlayingProps) {
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [page, setPage] = useState(1);
-  const [moviesList, setMoviesList] =
-    useState<NowPlayingItem[]>(nowPlayingData);
+  const [moviesList, setMoviesList] = useState<MovieProps[]>(movies);
 
   useEffect(() => {
     if (page > 1) {

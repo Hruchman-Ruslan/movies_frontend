@@ -1,14 +1,16 @@
 import { cn } from "@/utils/cn";
 
+import { MovieProps } from "@/types/movie";
+
 import Options from "@/assets/icons/options.svg";
 
 import Title from "@/components/Title";
 
-import MoviesList, { Movie } from "@/components/MoviesList";
+import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 interface WatchingProps {
-  movies: Movie[];
+  movies: MovieProps[];
 }
 
 export default function Watching({ movies }: WatchingProps) {

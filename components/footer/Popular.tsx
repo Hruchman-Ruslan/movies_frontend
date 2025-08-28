@@ -4,22 +4,22 @@ import { useState, useEffect } from "react";
 
 import { getPopularMovies } from "@/actions/action-movies";
 
+import { MovieProps } from "@/types/movie";
+
 import { cn } from "@/utils/cn";
 
 import Options from "@/assets/icons/options.svg";
 
-import { Movie } from "@/app/@popular/page";
-
 import Title from "@/components/Title";
-import MoviesList from "@/components/MoviesList";
+import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 interface PopularProps {
-  movies: Movie[];
+  movies: MovieProps[];
 }
 
 export default function Popular({ movies }: PopularProps) {
-  const [moviesList, setMoviesList] = useState<Movie[]>(movies);
+  const [moviesList, setMoviesList] = useState<MovieProps[]>(movies);
   const [page, setPage] = useState(1);
   const [visibleIndex, setVisibleIndex] = useState(0);
 

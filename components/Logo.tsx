@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 
 export default function Logo() {
   return (
-    <div className={cn("center mb-8 gap-2.5")}>
+    <section className={cn("center mb-8 gap-2.5")}>
       <Image
         src="/default.webp"
         alt="logo"
@@ -14,6 +14,6 @@ export default function Logo() {
         priority
       />
       <h1 className={cn("font-title text-secondary-text")}>My Demo</h1>
-    </div>
+    </section>
   );
 }
