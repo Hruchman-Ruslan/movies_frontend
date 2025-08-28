@@ -28,6 +28,9 @@
 }
 
 @layer utilities {
+  .layout-section {
+    @apply flex w-full flex-col justify-around gap-4 overflow-y-auto;
+  }
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: var(--color-hover) transparent;

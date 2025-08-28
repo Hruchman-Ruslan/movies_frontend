@@ -5,7 +5,6 @@ import "./globals.css";
 
 import { cn } from "@/utils/cn";
 
-import Header from "@/components/header/Header";
 import Form from "@/components/Form";
 
 const ancizar = Ancizar_Serif({
@@ -23,10 +22,12 @@ export default function RootLayout({
   children,
   popular,
   watching,
+  header,
 }: Readonly<{
   children: React.ReactNode;
   popular: React.ReactNode;
   watching: React.ReactNode;
+  header: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -36,22 +37,15 @@ export default function RootLayout({
             "grid h-screen grid-cols-[minmax(200px,15%)_1fr_minmax(250px,20%)]",
           )}
         >
-          <Header className={cn("min-h-0 w-full overflow-y-auto")} />
-          <main
-            className={cn(
-              "flex w-full flex-col justify-around gap-4 overflow-y-auto",
-              "scrollbar-thin px-14",
-            )}
-          >
+          <header className="layout-section scrollbar-thin relative bg-secondary-bg px-4">
+            {header}
+          </header>
+
+          <main className="layout-section scrollbar-thin px-14">
             {children}
           </main>
 
-          <footer
-            className={cn(
-              "flex w-full flex-col justify-around gap-4 overflow-y-auto",
-              "bg-secondary-bg px-4",
-            )}
-          >
+          <footer className="layout-section scrollbar-thin bg-secondary-bg px-4">
             <Form />
             {popular}
             {watching}

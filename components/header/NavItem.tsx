@@ -29,7 +29,7 @@ export default function NavItem({
       href={href}
       {...props}
       className={cn(
-        "font-secondary flex items-center gap-x-5 transition-colors duration-200",
+        "flex items-center gap-x-5 text-xl font-medium transition-colors duration-200",
         isActive
           ? "text-red-600"
           : "text-white hover:text-red-600 focus:text-red-600",

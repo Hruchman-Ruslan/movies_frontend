@@ -1,8 +1,6 @@
-import Add from "@/components/Add";
-import ChuckNorrisButton from "@/components/Button";
-import Button from "@/components/Button";
-
 import { cn } from "@/utils/cn";
+
+import ChuckNorrisButton from "@/components/Button";
 
 const heroData = {
   title: "Supernatural",
@@ -22,7 +20,9 @@ export default function Hero() {
         <p className="mb-8 font-text">{heroData.genre}</p>
         <div className="flex items-center gap-2.5">
           <ChuckNorrisButton variant="watch now">Watch Now</ChuckNorrisButton>
-          <Add />
+          <ChuckNorrisButton variant="add" className={cn("w-14")}>
+            +
+          </ChuckNorrisButton>
         </div>
       </div>
     </section>

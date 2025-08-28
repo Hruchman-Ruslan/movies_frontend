@@ -73,14 +73,9 @@ interface HeaderProps {
   className?: string;
 }
 
-export default function HeaderComponent({ className }: HeaderProps) {
+export default function Navigation({ className }: HeaderProps) {
   return (
-    <header
-      className={cn(
-        "justify relative flex h-screen w-full flex-col bg-secondary-bg p-5",
-        className,
-      )}
-    >
+    <header className={cn("relative", className)}>
       <Logo />
 
       <aside>
@@ -104,7 +99,7 @@ export default function HeaderComponent({ className }: HeaderProps) {
           </section>
 
           {/* General navigation */}
-          <section className="mb-3">
+          <section>
             <Title level="h3">General</Title>
             <NavList data={generalData} />
           </section>

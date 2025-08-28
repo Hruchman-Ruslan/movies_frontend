@@ -4,7 +4,6 @@ import {
 } from "@/actions/action-movies";
 
 import Hero from "@/components/main/Hero";
-import MainHeader from "@/components/main/MainHeader";
 import NowPlayingList from "@/components/main/NowPlayingList";
 import TopRatingList from "@/components/main/TopRatingList";
 
@@ -14,10 +13,9 @@ export default async function Home() {
 
   return (
     <>
-      <MainHeader />
       <Hero />
-      <NowPlayingList nowPlayingData={nowPlayingMovies} />
-      <TopRatingList topRatingData={topRatingMovies} />
+      <NowPlayingList movies={nowPlayingMovies} />
+      <TopRatingList movies={topRatingMovies} />
     </>
   );
 }

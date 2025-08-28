@@ -8,7 +8,7 @@ import Left from "@/assets/icons/left.svg";
 import Right from "@/assets/icons/right.svg";
 
 import Title from "@/components/Title";
-import MoviesList from "@/components/MoviesList";
+import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export interface TopRatingItem {
