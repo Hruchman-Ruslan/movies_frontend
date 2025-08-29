@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
 import { getTopRatedMovies } from "@/actions/action-movies";
 
 import { MovieProps } from "@/types/movie";
+
+import { useMoviesPagination } from "@/hooks/useMoviesPagination";
 
 import { cn } from "@/utils/cn";
 
@@ -15,37 +15,9 @@ import Title from "@/components/Title";
 import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
-interface TopRatingProps {
-  movies: MovieProps[];
-}
-
-export default function TopRatingList({ movies }: TopRatingProps) {
-  const [visibleIndex, setVisibleIndex] = useState(0);
-  const [page, setPage] = useState(1);
-  const [moviesList, setMoviesList] = useState<MovieProps[]>(movies);
-
-  useEffect(() => {
-    if (page > 1) {
-      getTopRatedMovies(page).then((newMovies) => {
-        setMoviesList((prev) => [...prev, ...newMovies]);
-      });
-    }
-  }, [page]);
-
-  const handleNext = () => {
-    const nextIndex = visibleIndex + 4;
-    if (nextIndex >= moviesList.length) {
-      setPage((prev) => prev + 1);
-    }
-    setVisibleIndex(nextIndex);
-  };
-
-  const handlePrev = () => {
-    const prevIndex = visibleIndex - 4;
-    if (prevIndex >= 0) {
-      setVisibleIndex(prevIndex);
-    }
-  };
+export default function TopRatingList({ movies }: { movies: MovieProps[] }) {
+  const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
+    useMoviesPagination(movies, 4, getTopRatedMovies);
 
   return (
     <section>
@@ -56,19 +28,23 @@ export default function TopRatingList({ movies }: TopRatingProps) {
         <div className={cn("center gap-5")}>
           <ChuckNorrisButton
             onClick={handlePrev}
-            disabled={visibleIndex === 0}
+            disabled={loading || visibleIndex === 0}
             variant="svg"
           >
             <Left />
           </ChuckNorrisButton>
-          <ChuckNorrisButton onClick={handleNext} variant="svg">
+          <ChuckNorrisButton
+            onClick={handleNext}
+            disabled={loading}
+            variant="svg"
+          >
             <Right />
           </ChuckNorrisButton>
         </div>
       </div>
 
       <MoviesList
-        movies={moviesList.slice(visibleIndex, visibleIndex + 4)}
+        movies={paginatedMovies}
         variant="topRated"
         onAdd={() => console.log("fatality adding")}
         onWatch={() => console.log("fatality watching")}
