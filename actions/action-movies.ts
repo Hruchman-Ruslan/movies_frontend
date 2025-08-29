@@ -2,28 +2,26 @@
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
+async function fetchMovies(
+  type: "popular" | "now_playing" | "top_rated" | "upcoming",
+  page: number = 1,
+) {
+  const res = await fetch(`${BACKEND_URL}/movies/${type}?page=${page}`);
+  if (!res.ok) throw new Error(`Failed to fetch ${type} movies`);
+  const data = await res.json();
+  return data.results || [];
+}
+
 export async function searchMovies(formData: FormData) {
   const query = formData.get("query");
-
-  console.log("query server:", query);
-
   return { query };
 }
 
-export async function getPopularMovies(page: number = 1) {
-  const res = await fetch(`${BACKEND_URL}/movies/popular?page=${page}`);
-  const movies = await res.json();
-  return movies;
-}
-
-export async function getNowPlayingMovies(page: number = 1) {
-  const res = await fetch(`${BACKEND_URL}/movies/now_playing?page=${page}`);
-  const movies = await res.json();
-  return movies;
-}
-
-export async function getTopRatedMovies(page: number = 1) {
-  const res = await fetch(`${BACKEND_URL}/movies/top_rated?page=${page}`);
-  const movies = await res.json();
-  return movies;
-}
+export const getPopularMovies = async (page?: number) =>
+  fetchMovies("popular", page);
+export const getNowPlayingMovies = async (page?: number) =>
+  fetchMovies("now_playing", page);
+export const getTopRatedMovies = async (page?: number) =>
+  fetchMovies("top_rated", page);
+export const getUpcoming = async (page?: number) =>
+  fetchMovies("upcoming", page);
