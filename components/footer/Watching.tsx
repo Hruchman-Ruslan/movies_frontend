@@ -5,15 +5,10 @@ import { MovieProps } from "@/types/movie";
 import Options from "@/assets/icons/options.svg";
 
 import Title from "@/components/Title";
-
 import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
-interface WatchingProps {
-  movies: MovieProps[];
-}
-
-export default function Watching({ movies }: WatchingProps) {
+export default function Watching({ movies }: { movies: MovieProps[] }) {
   return (
     <>
       <div className={cn("center-between mb-5")}>
