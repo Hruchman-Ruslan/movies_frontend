@@ -19,6 +19,7 @@ export default function Popular({ movies }: { movies: MovieProps[] }) {
     movies,
     2,
     getPopularMovies,
+    "w185",
   );
 
   return (
