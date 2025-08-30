@@ -46,6 +46,7 @@ export default function NowPlayingList({ movies }: { movies: MovieProps[] }) {
       </div>
 
       <MoviesList
+        imageSize={imageSize}
         movies={paginatedMovies}
         variant="nowPlaying"
         onAdd={() => console.log("fatality adding")}

@@ -1,19 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { MovieProps } from "@/types/movie";
+import { ImageSize, MovieProps } from "@/types/movie";
 
-// import { getSizes } from "@/utils/getSizes";
-// import { useImageSize } from "@/hooks/useImageSize";
+import { getSizes } from "@/utils/getSizes";
 
 import Rating from "@/components/Rating";
 
 export default function SmallCard({
   poster,
   title,
+  imageSize,
   genres,
   rating,
-}: MovieProps) {
+}: MovieProps & { imageSize: ImageSize }) {
   const posterUrl = poster || "/default.webp";
 
   return (
@@ -25,7 +25,7 @@ export default function SmallCard({
             alt={title || "default image"}
             fill
             className="rounded object-cover"
-            // sizes={getSizes(imageSize)}
+            sizes={getSizes(imageSize)}
           />
         </div>
       </Link>

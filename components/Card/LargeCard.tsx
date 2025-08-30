@@ -1,20 +1,20 @@
 import Image from "next/image";
 
-import { MovieProps } from "@/types/movie";
+import { ImageSize, MovieProps } from "@/types/movie";
 
-// import { getSizes } from "@/utils/getSizes";
-// import { useImageSize } from "@/hooks/useImageSize";
+import { getSizes } from "@/utils/getSizes";
 
 import ChuckNorrisButton from "@/components/Button";
 
 export default function LargeCard({
   poster,
   title,
+  imageSize,
   onAdd,
   onWatch,
   variant,
   ...movie
-}: MovieProps) {
+}: MovieProps & { imageSize: ImageSize }) {
   const posterUrl = poster || "/default.webp";
 
   return (
@@ -24,7 +24,7 @@ export default function LargeCard({
         alt={title || "default image"}
         fill
         className="rounded object-cover"
-        // sizes={getSizes(imageSize)}
+        sizes={getSizes(imageSize)}
       />
 
       <ChuckNorrisButton
