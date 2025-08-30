@@ -1,12 +1,13 @@
 import { cn } from "@/utils/cn";
 
-import { MovieProps } from "@/types/movie";
+import { ImageSize, MovieProps } from "@/types/movie";
 
 import MovieItem from "@/components/Movies/MovieItem";
 
 interface MovieListProps {
   movies: MovieProps[];
   variant: MovieProps["variant"];
+  imageSize: ImageSize;
   onAdd?: (movie: MovieProps) => void;
   onWatch?: (movie: MovieProps) => void;
   className?: string;
@@ -22,6 +23,7 @@ const variantClasses: Record<MovieProps["variant"], string> = {
 export default function MoviesList({
   movies,
   variant,
+  imageSize,
   onAdd,
   onWatch,
   className,
@@ -33,6 +35,7 @@ export default function MoviesList({
           <MovieItem
             {...movie}
             variant={variant}
+            imageSize={imageSize}
             onAdd={onAdd}
             onWatch={onWatch}
           />

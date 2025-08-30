@@ -16,7 +16,7 @@ export interface MovieBase {
   title?: string;
   genres?: string;
   rating?: number;
-  poster?: ImageSize | StaticImageData;
+  poster?: string | StaticImageData;
   backdrop?: string;
   overview?: string;
   releaseDate?: string;
