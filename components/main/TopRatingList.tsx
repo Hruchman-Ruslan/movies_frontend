@@ -4,6 +4,7 @@ import { getTopRatedMovies } from "@/actions/action-movies";
 
 import { MovieProps } from "@/types/movie";
 
+import { useImageSize } from "@/hooks/useImageSize";
 import { useMoviesPagination } from "@/hooks/useMoviesPagination";
 
 import { cn } from "@/utils/cn";
@@ -16,8 +17,9 @@ import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export default function TopRatingList({ movies }: { movies: MovieProps[] }) {
+  const imageSize = useImageSize();
   const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
-    useMoviesPagination(movies, 4, getTopRatedMovies);
+    useMoviesPagination(movies, 4, getTopRatedMovies, imageSize);
 
   return (
     <section>

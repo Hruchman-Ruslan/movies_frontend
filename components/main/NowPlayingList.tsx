@@ -4,6 +4,7 @@ import { getNowPlayingMovies } from "@/actions/action-movies";
 
 import { MovieProps } from "@/types/movie";
 
+import { useImageSize } from "@/hooks/useImageSize";
 import { useMoviesPagination } from "@/hooks/useMoviesPagination";
 
 import { cn } from "@/utils/cn";
@@ -16,8 +17,9 @@ import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export default function NowPlayingList({ movies }: { movies: MovieProps[] }) {
+  const imageSize = useImageSize();
   const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
-    useMoviesPagination(movies, 5, getNowPlayingMovies);
+    useMoviesPagination(movies, 5, getNowPlayingMovies, imageSize);
 
   return (
     <section>

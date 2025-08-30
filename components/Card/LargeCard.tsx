@@ -2,6 +2,9 @@ import Image from "next/image";
 
 import { MovieProps } from "@/types/movie";
 
+// import { getSizes } from "@/utils/getSizes";
+// import { useImageSize } from "@/hooks/useImageSize";
+
 import ChuckNorrisButton from "@/components/Button";
 
 export default function LargeCard({
@@ -12,14 +15,16 @@ export default function LargeCard({
   variant,
   ...movie
 }: MovieProps) {
+  const posterUrl = poster || "/default.webp";
+
   return (
     <div className="relative aspect-[2/3] w-full">
       <Image
-        src={poster || "/default.webp"}
+        src={posterUrl}
         alt={title || "default image"}
         fill
         className="rounded object-cover"
-        sizes="(max-width: 768px) 100vw, 20vw"
+        // sizes={getSizes(imageSize)}
       />
 
       <ChuckNorrisButton
