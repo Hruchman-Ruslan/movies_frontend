@@ -1,30 +1,50 @@
+"use client";
+
 import { cn } from "@/utils/cn";
 
+import { getUpcoming } from "@/actions/action-movies";
+
+import { MovieProps } from "@/types/movie";
+
+import { useImageSize } from "@/hooks/useImageSize";
+import { useMoviesPagination } from "@/hooks/useMoviesPagination";
+
+import Left from "@/assets/icons/left.svg";
+import Right from "@/assets/icons/right.svg";
+
+import MoviesList from "../Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
-const heroData = {
-  title: "Supernatural",
-  season: 5,
-  genre: "ACTION, HORROR, COMEDY",
-};
-export default function Hero() {
+export default function Hero({ movies }: { movies: MovieProps[] }) {
+  const { backdropSize } = useImageSize();
+  const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
+    useMoviesPagination({
+      movies,
+      perPage: 1,
+      fetcher: getUpcoming,
+      backdropSize,
+    });
   return (
-    <section
-      className={cn(
-        "flex h-72 w-full flex-col items-start justify-center bg-[url('/hero.jpg')] bg-cover bg-center p-8",
-      )}
-    >
-      <div>
-        <p className="mb-2.5 font-text">Season {heroData.season}</p>
-        <h1 className="mb-3 text-4xl font-bold">{heroData.title}</h1>
-        <p className="mb-8 font-text">{heroData.genre}</p>
-        <div className="flex items-center gap-2.5">
-          <ChuckNorrisButton variant="watch now">Watch Now</ChuckNorrisButton>
-          <ChuckNorrisButton variant="add" className={cn("w-14")}>
-            +
-          </ChuckNorrisButton>
-        </div>
-      </div>
+    <section className={cn("flex gap-10 px-14")}>
+      <ChuckNorrisButton
+        onClick={handlePrev}
+        disabled={loading || visibleIndex === 0}
+        variant="svg"
+      >
+        <Left />
+      </ChuckNorrisButton>
+
+      <MoviesList
+        backdropSize={backdropSize}
+        movies={paginatedMovies}
+        variant="hero"
+        onAdd={() => console.log("fatality adding")}
+        onWatch={() => console.log("fatality watching")}
+      />
+
+      <ChuckNorrisButton onClick={handleNext} disabled={loading} variant="svg">
+        <Right />
+      </ChuckNorrisButton>
     </section>
   );
 }

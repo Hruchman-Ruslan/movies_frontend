@@ -1,16 +1,31 @@
 "use server";
 
-import { ImageSize } from "@/types/movie";
+import { BackdropSize, PosterSize } from "@/types/movie";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
+type MovieType = "popular" | "now_playing" | "top_rated" | "upcoming";
+
 async function fetchMovies(
-  type: "popular" | "now_playing" | "top_rated" | "upcoming",
+  type: MovieType,
   page: number = 1,
-  imageSize: ImageSize = "w500",
+  posterSize: PosterSize = "original",
 ) {
   const res = await fetch(
-    `${BACKEND_URL}/movies/${type}?page=${page}&imageSize=${imageSize}`,
+    `${BACKEND_URL}/movies/${type}?page=${page}&posterSize=${posterSize}`,
+  );
+  if (!res.ok) throw new Error(`Failed to fetch ${type} movies`);
+  const data = await res.json();
+  return data.results || [];
+}
+
+async function fetchMoviesBackdrop(
+  type: MovieType,
+  page: number = 1,
+  backdropSize: BackdropSize = "original",
+) {
+  const res = await fetch(
+    `${BACKEND_URL}/movies/${type}?page=${page}&backdropSize=${backdropSize}`,
   );
   if (!res.ok) throw new Error(`Failed to fetch ${type} movies`);
   const data = await res.json();
@@ -22,13 +37,20 @@ export async function searchMovies(formData: FormData) {
   return { query };
 }
 
-export const getPopularMovies = async (page?: number, imageSize?: ImageSize) =>
-  fetchMovies("popular", page, imageSize);
+export const getPopularMovies = async (
+  page?: number,
+  posterSize?: PosterSize,
+) => fetchMovies("popular", page, posterSize);
 export const getNowPlayingMovies = async (
   page?: number,
-  imageSize?: ImageSize,
-) => fetchMovies("now_playing", page, imageSize);
-export const getTopRatedMovies = async (page?: number, imageSize?: ImageSize) =>
-  fetchMovies("top_rated", page, imageSize);
-export const getUpcoming = async (page?: number, imageSize?: ImageSize) =>
-  fetchMovies("upcoming", page, imageSize);
+  posterSize?: PosterSize,
+) => fetchMovies("now_playing", page, posterSize);
+export const getTopRatedMovies = async (
+  page?: number,
+  posterSize?: PosterSize,
+) => fetchMovies("top_rated", page, posterSize);
+export const getUpcoming = async (
+  page?: number,
+  posterSize?: PosterSize,
+  backdropSize?: BackdropSize,
+) => fetchMoviesBackdrop("upcoming", page, backdropSize);

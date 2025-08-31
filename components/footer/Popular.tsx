@@ -4,6 +4,7 @@ import { getPopularMovies } from "@/actions/action-movies";
 
 import { MovieProps } from "@/types/movie";
 
+import { useImageSize } from "@/hooks/useImageSize";
 import { useMoviesPagination } from "@/hooks/useMoviesPagination";
 
 import { cn } from "@/utils/cn";
@@ -15,12 +16,13 @@ import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export default function Popular({ movies }: { movies: MovieProps[] }) {
-  const { paginatedMovies, handleNext, loading } = useMoviesPagination(
+  const { posterSize } = useImageSize();
+  const { paginatedMovies, handleNext, loading } = useMoviesPagination({
     movies,
-    2,
-    getPopularMovies,
-    "w185",
-  );
+    perPage: 2,
+    fetcher: getPopularMovies,
+    posterSize,
+  });
 
   return (
     <>
@@ -30,7 +32,11 @@ export default function Popular({ movies }: { movies: MovieProps[] }) {
         </Title>
         <Options />
       </div>
-      <MoviesList movies={paginatedMovies} variant="popular" />
+      <MoviesList
+        movies={paginatedMovies}
+        variant="popular"
+        posterSize={posterSize}
+      />
 
       <ChuckNorrisButton
         onClick={handleNext}

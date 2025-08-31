@@ -17,9 +17,14 @@ import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export default function TopRatingList({ movies }: { movies: MovieProps[] }) {
-  const imageSize = useImageSize();
+  const { posterSize } = useImageSize();
   const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
-    useMoviesPagination(movies, 4, getTopRatedMovies, imageSize);
+    useMoviesPagination({
+      movies,
+      perPage: 4,
+      fetcher: getTopRatedMovies,
+      posterSize,
+    });
 
   return (
     <section>
@@ -46,6 +51,7 @@ export default function TopRatingList({ movies }: { movies: MovieProps[] }) {
       </div>
 
       <MoviesList
+        posterSize={posterSize}
         movies={paginatedMovies}
         variant="topRated"
         onAdd={() => console.log("fatality adding")}

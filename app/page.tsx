@@ -1,6 +1,7 @@
 import {
   getNowPlayingMovies,
   getTopRatedMovies,
+  getUpcoming,
 } from "@/actions/action-movies";
 
 import Hero from "@/components/main/Hero";
@@ -10,10 +11,11 @@ import TopRatingList from "@/components/main/TopRatingList";
 export default async function Home() {
   const nowPlayingMovies = await getNowPlayingMovies(1);
   const topRatingMovies = await getTopRatedMovies(1);
+  const upcomingMovies = await getUpcoming(1);
 
   return (
     <>
-      <Hero />
+      <Hero movies={upcomingMovies} />
       <NowPlayingList movies={nowPlayingMovies} />
       <TopRatingList movies={topRatingMovies} />
     </>

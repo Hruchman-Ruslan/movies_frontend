@@ -1,13 +1,12 @@
 import { cn } from "@/utils/cn";
-
-import { ImageSize, MovieProps } from "@/types/movie";
-
+import { MovieProps, PosterSize, BackdropSize } from "@/types/movie";
 import MovieItem from "@/components/Movies/MovieItem";
 
-interface MovieListProps {
+interface MoviesListProps {
   movies: MovieProps[];
   variant: MovieProps["variant"];
-  imageSize: ImageSize;
+  posterSize?: PosterSize;
+  backdropSize?: BackdropSize;
   onAdd?: (movie: MovieProps) => void;
   onWatch?: (movie: MovieProps) => void;
   className?: string;
@@ -18,24 +17,27 @@ const variantClasses: Record<MovieProps["variant"], string> = {
   watching: "mb-4 flex flex-col items-center justify-center gap-y-3.5",
   nowPlaying: "grid w-full grid-cols-5 gap-3.5",
   topRated: "grid w-full grid-cols-4 gap-3.5",
+  hero: "flex w-full items-center justify-center gap-y-3.5",
 };
 
 export default function MoviesList({
   movies,
   variant,
-  imageSize,
+  posterSize,
+  backdropSize,
   onAdd,
   onWatch,
   className,
-}: MovieListProps) {
+}: MoviesListProps) {
   return (
-    <ul className={cn(variant && variantClasses[variant], className)}>
+    <ul className={cn(variantClasses[variant], className)}>
       {movies.map((movie) => (
         <li key={movie.id} className="w-full">
           <MovieItem
             {...movie}
             variant={variant}
-            imageSize={imageSize}
+            posterSize={posterSize}
+            backdropSize={backdropSize}
             onAdd={onAdd}
             onWatch={onWatch}
           />
