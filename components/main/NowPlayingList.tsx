@@ -12,14 +12,19 @@ import { cn } from "@/utils/cn";
 import Left from "@/assets/icons/left.svg";
 import Right from "@/assets/icons/right.svg";
 
-import Title from "../Title";
+import Title from "@/components/Title";
 import MoviesList from "@/components/Movies/MoviesList";
 import ChuckNorrisButton from "@/components/Button";
 
 export default function NowPlayingList({ movies }: { movies: MovieProps[] }) {
-  const imageSize = useImageSize();
+  const { posterSize } = useImageSize();
   const { paginatedMovies, handleNext, handlePrev, loading, visibleIndex } =
-    useMoviesPagination(movies, 5, getNowPlayingMovies, imageSize);
+    useMoviesPagination({
+      movies,
+      perPage: 5,
+      fetcher: getNowPlayingMovies,
+      posterSize,
+    });
 
   return (
     <section>
@@ -46,7 +51,7 @@ export default function NowPlayingList({ movies }: { movies: MovieProps[] }) {
       </div>
 
       <MoviesList
-        imageSize={imageSize}
+        posterSize={posterSize}
         movies={paginatedMovies}
         variant="nowPlaying"
         onAdd={() => console.log("fatality adding")}

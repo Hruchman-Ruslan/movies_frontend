@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 
-import { ImageSize, MovieProps } from "@/types/movie";
+import { PosterSize, MovieProps, BackdropSize } from "@/types/movie";
 
-export function useMoviesPagination(
-  movies: MovieProps[],
-  perPage: number,
-  fetcher: (page: number, imageSize?: ImageSize) => Promise<MovieProps[]>,
-  imageSize?: ImageSize,
-) {
+export function useMoviesPagination({
+  movies,
+  perPage,
+  fetcher,
+  posterSize,
+  backdropSize,
+}: {
+  movies: MovieProps[];
+  perPage: number;
+  fetcher: (
+    page: number,
+    posterSize?: PosterSize,
+    backdropSize?: BackdropSize,
+  ) => Promise<MovieProps[]>;
+  posterSize?: PosterSize;
+  backdropSize?: BackdropSize;
+}) {
   const [moviesList, setMoviesList] = useState<MovieProps[]>(movies);
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [page, setPage] = useState(1);
@@ -18,7 +29,7 @@ export function useMoviesPagination(
       const fetchMovies = async () => {
         setLoading(true);
         try {
-          const newMovies = await fetcher(page, imageSize);
+          const newMovies = await fetcher(page, posterSize, backdropSize);
           setMoviesList((prev) => [...prev, ...newMovies]);
         } catch (error) {
           console.error("Failed to load movies:", error);
@@ -29,7 +40,7 @@ export function useMoviesPagination(
 
       fetchMovies();
     }
-  }, [page, fetcher, imageSize]);
+  }, [page, fetcher, posterSize, backdropSize]);
 
   const handleNext = () => {
     if (loading) return;

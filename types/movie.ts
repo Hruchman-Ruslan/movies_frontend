@@ -1,8 +1,13 @@
 import { StaticImageData } from "next/image";
 
-export type MovieVariant = "popular" | "watching" | "nowPlaying" | "topRated";
+export type MovieVariant =
+  | "popular"
+  | "watching"
+  | "nowPlaying"
+  | "topRated"
+  | "hero";
 
-export type ImageSize =
+export type PosterSize =
   | "w92"
   | "w154"
   | "w185"
@@ -10,6 +15,8 @@ export type ImageSize =
   | "w500"
   | "w780"
   | "original";
+
+export type BackdropSize = "w300" | "w780" | "w1280" | "original";
 
 export interface MovieBase {
   id: number;

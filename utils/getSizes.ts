@@ -1,15 +1,25 @@
-import { ImageSize } from "@/types/movie";
+import { BackdropSize, PosterSize } from "@/types/movie";
 
-export function getSizes(imageSize: ImageSize) {
-  switch (imageSize) {
+export function getSizes(size: PosterSize | BackdropSize) {
+  switch (size) {
+    case "w92":
+      return "92px";
+    case "w154":
+      return "154px";
     case "w185":
-      return "(max-width: 640px) 100vw, 50vw";
+      return "185px";
     case "w342":
-      return "(max-width: 1024px) 50vw, 33vw";
+      return "342px";
     case "w500":
-      return "(max-width: 1440px) 33vw, 25vw";
+      return "500px";
     case "w780":
-      return "25vw";
+      return "780px";
+    case "w300":
+      return "300px";
+    case "w1280":
+      return "1280px";
+    case "original":
+      return "100vw";
     default:
       return "100vw";
   }
